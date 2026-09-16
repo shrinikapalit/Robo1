@@ -1,0 +1,134 @@
+# Robot simulator driving and checking for obstacles
+
+position = 0
+target_distance = 20
+obstacle_distance = 12
+speed = 2
+
+print("Starting robot simulator...")
+print("Target distance:", target_distance)
+print("Obstacle is at:", obstacle_distance)
+
+# main loop - robot should keep moving forward until hitting the target
+while position < target_distance:
+    # check if the robot would hit the obstacle
+    if position >= obstacle_distance:
+        print("Oops, obstacle detected ahead, stopping robot.")
+        break
+
+    position = (position + speed)
+    print("The robot moved forward, it's now at position:", position)
+
+# after loop figure out what actually happened
+if position < target_distance:
+    print("The robot stopped early due to the obstacle.")
+else:
+    print("The robot made it to the target distance1")
+
+print("Simulation done. Final position:", position)
+
+# test what happens with a different speed and obstacle position
+print("")
+print("Now running a second test with different numbers...")
+
+position2 = 0
+target_distance2 = 12
+obstacle_distance2 = 20
+# no obstacle in the way in this test
+speed2 = 4
+
+while position2 < target_distance2:
+    if position2 >= obstacle_distance2:
+        print("Oops, obstacle detected ahead, stopping robot.")
+        break
+
+    position2 = (position2 + speed2)
+    print("The robot moved forward, it's now at position:", position2)
+
+print("Second test complete. Final position:", position2)
+
+#c last test is a color sensor situation
+print("")
+print("Testing a color sensor...")
+
+detected_color = "red"
+# change for different scenarios
+
+if detected_color == "red":
+    print("Red is detected, stop the robot")
+elif detected_color == "green":
+    print("Green is directed, keep driving the robot")
+elif detected_color == "pink":
+    print("Pink is detected, turn the robot right")
+elif detected_color == "blue":
+    print("Blue is detected, turn the robot left")
+else:
+    print("Unknown color detected")
+
+detected_color2 = "orange"
+# change for different scenarios
+
+if detected_color2 == "red":
+    print("Red is detected, stop the robot")
+elif detected_color2 == "green":
+    print("Green is directed, keep driving the robot")
+elif detected_color2 == "pink":
+    print("Pink is detected, turn the robot right")
+elif detected_color2 == "blue":
+    print("Blue is detected, turn the robot left")
+else:
+    print("Unknown color detected")
+
+# clawtest
+print("")
+print("Testing the claw...")
+
+claw_open = True
+item_in_range = True
+
+if item_in_range:
+    if claw_open:
+        print("Item is in range, closing claw to grab it.")
+        claw_open = False
+    else:
+        print("Claw is already closed, it cannot grab another item.")
+else:
+    print("No item is in range, cannot grab anything yet.")
+
+print("Claw now open?", claw_open)
+
+
+# Test to see what heppens if item isn't in range
+claw_open2 = True
+item_in_range2 = False
+
+if item_in_range2:
+    if claw_open2:
+        print("Item is in range, closing claw to grab it.")
+        claw_open2 = False
+    else:
+        print("Claw is already closed, it cannot grab another item.")
+else:
+    print("No item is in range, cannot grab anything yet.")
+
+print("Claw now open?", claw_open2)
+
+
+#last test to see what happens if you try to grab twice in a row
+claw_open3 = True
+item_in_range3 = True
+
+#first grab
+if item_in_range3 and claw_open3:
+    print("Item is in range, closing claw to grab it.")
+    claw_open3 = False
+
+print("Claw now open?", claw_open3)
+
+# second attempt after there's already an item in the claw
+if item_in_range3:
+    if claw_open3:
+        print("Item is in range, closing claw to grab it.")
+        claw_open3 = False
+    else:
+        print("Claw is already closed, it cannot grab another item.")
